@@ -7,6 +7,11 @@ export const selectCurrentBook = createSelector(
   book => book.currentBook
 );
 
+export const selectIsErrorWhileFetching = createSelector(
+  [selectBook],
+  book => !!book.errorMessage 
+)
+
 export const selectIsBookFetching = createSelector(
   [selectBook],
   book => book.isFetching

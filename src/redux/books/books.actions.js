@@ -6,6 +6,10 @@ export const toggleBookHidden = () => ({
     type: BookActionTypes.TOGGLE_BOOK_HIDDEN
 });
 
+export const initalizeBookState = () => ({
+  type: BookActionTypes.INITIALIZE_BOOK_STATE
+})
+
 export const fetchBookStart = () => ({
   type: BookActionTypes.FETCH_BOOK_START
 });

@@ -17,7 +17,8 @@ const bookReducer = (state = INITAL_STATE, action) => {
         case BookActionTypes.FETCH_BOOK_START:
             return {
                 ...state,
-                isFetching: true
+                isFetching: true,
+                errorMessage: undefined
             };
         case BookActionTypes.FETCH_BOOK_SUCCESS:
             return{
@@ -28,8 +29,16 @@ const bookReducer = (state = INITAL_STATE, action) => {
         case BookActionTypes.FETCH_BOOK_FAILURE:
             return {
                 ...state,
+                currentBook: null,
                 isFetching: false,
                 errorMessage: action.payload
+            }
+        case BookActionTypes.INITIALIZE_BOOK_STATE:
+            return {
+                hidden: true,
+                currentBook: null,
+                isFetching: false,
+                errorMessage: undefined
             }
         default:
             return state;

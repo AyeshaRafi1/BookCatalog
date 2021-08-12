@@ -12,6 +12,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { initalizeBookState } from './redux/books/books.actions';
 
 class App extends React.Component {
 
@@ -23,7 +24,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser,initalizeBookState } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -38,6 +39,8 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
+      initalizeBookState();
+
     });
   }
 
@@ -72,7 +75,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  initalizeBookState: ()=> dispatch(initalizeBookState())
 });
 
 export default connect(

@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -19,11 +20,25 @@ const HomePage = ({ currentUser}) => {
             <div className='page'>
                 <div className='left-container'>
                     <h1>
-                        {currentUser? `${currentUser.displayName.split(' ')[0]}'s Reading List`: null}
+                        {currentUser?
+                        (
+                            currentUser.displayName ?
+                            `${currentUser.displayName.split(' ')[0]}'s Reading List`
+                            :
+                            "still fetching data"
+                        )
+                        : null}
                     </h1>
                 
-                {currentUser? <BookList booklist={currentUser.bookList}/> : null}
-                
+                {currentUser?
+                (
+                    currentUser.bookList?
+                    <BookList booklist={currentUser.bookList}/> 
+                    :
+                    "you have no books added currently"
+                ) 
+                : "page is loading"
+            }
                 </div>
                 <BookDetails/>
             </div>

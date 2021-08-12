@@ -4,16 +4,37 @@ import { createStructuredSelector } from 'reselect';
 
 import './book-button.styles.scss';
 
-import { toggleBookHidden } from '../../redux/books/books.actions';
-import { selectCurrentBook } from '../../redux/books/books.selectors';
-import { fetchBookStartAsync } from '../../redux/books/books.actions';
+import { toggleBookHidden,fetchBookStartAsync } from '../../redux/books/books.actions';
+import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../../redux/books/books.selectors';
 
-const Book =({name, fetchBookStartAsync, toggleBookHidden})=>{
+const Book =({name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
     const stuff = async ()=> {
         
-        fetchBookStartAsync(name)
-        toggleBookHidden()
+        if (currentBook){
+            if (currentBook.name === name){
+                toggleBookHidden()
+            }
+            else if (hidden) {
+                await fetchBookStartAsync(name)
+                toggleBookHidden()
+            }
+            else {
+                await fetchBookStartAsync(name)
+            }
+        }
+        else {
+            if(error){
+                await fetchBookStartAsync(name)
+            }
+            else{
+                await fetchBookStartAsync(name)
+                toggleBookHidden()
+
+            }
+        }     
+        
+        
     }
     return (
         <button className='book'onClick={stuff}> {name}</button>
@@ -27,7 +48,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = createStructuredSelector({
-    currentBook: selectCurrentBook
+    currentBook: selectCurrentBook,
+    error: selectIsErrorWhileFetching,
+    hidden: selectIsHidden
   });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Book);

@@ -13,33 +13,36 @@ const BookDetails = ({ currentBook, fetching, hidden } ) =>{
 
     return (
         <div className={`book-details ${hidden? "hidden": ""}`}>
-            <h2>
-                {
-                currentBook? currentBook.name  : (
-                    "Harry Potter"
-                )
-                }
-            </h2>
-            <h3>
-                {
-                currentBook?  currentBook.genre : (
-                    "sci"   
-                )
-                }
-            </h3>
-            <h3>
-                {
-                currentBook? currentBook.Author : (
-                    "j k rowling"
-                )
-                }
-            </h3>
-            <h3>
-                other books by this Auther
-            </h3>
-            <ul>
-                <li>harry potter part 2</li>
-            </ul>
+            {fetching
+            ?
+            "still fetching data"
+            :
+            <div>
+            {
+                currentBook
+                ?
+                <div>
+                    <h2>
+                        {currentBook.name}
+                    </h2>
+                    <h3>
+                        {currentBook.genre.join(", ")}
+                    </h3>
+                    <h3>
+                        {currentBook.Author}
+                    </h3>
+                    <h3>
+                        other ooks by this Auther
+                    </h3>
+                    <ul>
+                        <li>harry potter part 2</li>
+                    </ul>
+                </div>
+                : 
+                "sorry the details of this book are not available"
+            }
+            </div>
+            }
 
         </div>
     )
