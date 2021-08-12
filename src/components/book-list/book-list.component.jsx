@@ -8,9 +8,11 @@ const BookList = ({booklist})=> {
     return (
         <div className='book-list'>
         {
-            booklist.map(book => (
-                <Book name={book}/>
-            ))
+            booklist? (booklist.map((book, ind) => (
+                <Book key={ind}  name={book}/>
+            )))
+            :
+            null
         }    
         </div> 
     )

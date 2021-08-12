@@ -35,6 +35,20 @@ const config = {
     return userRef
   };
 
+  export const getBookDetails = async (bookName)=> {
+    if (!bookName) return;
+
+    const userRef=firestore.doc(`books/${bookName.toLowerCase()}`);
+
+    const snapShot =await userRef.get();
+    if (snapShot.exists) {
+
+      const { Author, genre } = await snapShot.data();
+
+      console.log(Author,genre)
+    }
+  };
+
   export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = firestore.collection(collectionKey);
 
@@ -49,19 +63,6 @@ const config = {
 
   };
 
-  export const convertCollectionsSnapshotToMap = collections => {
-    const transformedCollection = collections.docs.map( doc => {
-      const { title, items } = doc.data();
-
-      return {
-        routName: encodeURI(title.toLowerCase()),
-        id: doc.id,
-        title,
-        items
-      }
-    });
-    console.log(transformedCollection)
-  };
 
   firebase.initializeApp(config);
 

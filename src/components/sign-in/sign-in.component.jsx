@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
@@ -56,11 +55,9 @@ class SignIn extends React.Component {
           <div className='buttons'>
             
             <CustomButton type='submit'> Sign in </CustomButton>
-            <Link to="./homepage">
-              <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
                 Sign in with Google
-              </CustomButton>
-            </Link>
+            </CustomButton>
             
           </div>
         </form>

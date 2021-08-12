@@ -1,10 +1,11 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import './book-details.styles.scss';
 
-const BookDetails = () =>{
+
+const BookDetails = ({hidden}) =>{
     return (
-        <div className='book-details'>
+        <div className={`book-details ${hidden? "hidden": ""}`}>
             <h2>
                 Harry Potter
             </h2>
@@ -25,4 +26,8 @@ const BookDetails = () =>{
     )
 }
 
-export default BookDetails;
+const mapStateToProps = ({book : {hidden}}) => ({
+    hidden
+})
+
+export default connect(mapStateToProps)(BookDetails);
