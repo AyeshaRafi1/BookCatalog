@@ -11,7 +11,7 @@ export const fetchBookStart = () => ({
 });
 
 export const fetchBookSuccess = book => ({
-  type: BookActionTypes.FETCH_BOOK_START,
+  type: BookActionTypes.FETCH_BOOK_SUCCESS,
   payload: book
 });
 
@@ -20,17 +20,17 @@ export const fetchBookFailure = errorMessage => ({
   payload: errorMessage
 });
 
-export const fetchBookStartAsync = () => {
+export const fetchBookStartAsync = (name) => {
   return dispatch => {
-    const BookRef = firestore.doc('book');
+    const BookRef = firestore.collection("books").doc(name.toLowerCase());
     dispatch(fetchBookStart());
 
-    BookRef
-      .get()
-      .then(snapshot => {
-        const book= snapshot.data();
-        dispatch(fetchBookSuccess(book));
-      })
-      .catch(error => dispatch(fetchBookFailure(error.message)));
+    BookRef.get().then(snapshot => 
+        {
+            let book= snapshot.data();
+            book["name"] = name;
+            dispatch(fetchBookSuccess(book));
+        })
+        .catch(error => dispatch(fetchBookFailure(error.message)));
   };
 };

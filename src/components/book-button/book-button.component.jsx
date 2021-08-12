@@ -1,16 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { getBookDetails } from '../../firebase/firebase.utils';
 
 import './book-button.styles.scss';
 
-import { setCurrentBook, toggleBookHidden } from '../../redux/books/books.actions';
+import { toggleBookHidden } from '../../redux/books/books.actions';
 import { selectCurrentBook } from '../../redux/books/books.selectors';
+import { fetchBookStartAsync } from '../../redux/books/books.actions';
 
-const Book =({name, toggleBookHidden})=>{
+const Book =({name, fetchBookStartAsync, toggleBookHidden})=>{
 
-    const stuff = ()=> {
+    const stuff = async ()=> {
+        
+        fetchBookStartAsync(name)
         toggleBookHidden()
     }
     return (
@@ -20,7 +22,8 @@ const Book =({name, toggleBookHidden})=>{
 
 const mapDispatchToProps = dispatch => ({
     toggleBookHidden: ()=> dispatch(toggleBookHidden()),
-    setCurrentBook: book => dispatch(setCurrentBook(book))    
+    fetchBookStartAsync: (name) => dispatch(fetchBookStartAsync(name))
+
 })
 
 const mapStateToProps = createStructuredSelector({

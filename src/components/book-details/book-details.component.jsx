@@ -1,19 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import './book-details.styles.scss';
 
 
-const BookDetails = ({hidden}) =>{
+import { selectCurrentBook, selectIsBookFetching, selectIsHidden } from '../../redux/books/books.selectors';
+
+
+const BookDetails = ({ currentBook, fetching, hidden } ) =>{
+
+
     return (
         <div className={`book-details ${hidden? "hidden": ""}`}>
             <h2>
-                Harry Potter
+                {
+                currentBook? currentBook.name  : (
+                    "Harry Potter"
+                )
+                }
             </h2>
             <h3>
-                sci-fi
+                {
+                currentBook?  currentBook.genre : (
+                    "sci"   
+                )
+                }
             </h3>
             <h3>
-                J k Rowling
+                {
+                currentBook? currentBook.Author : (
+                    "j k rowling"
+                )
+                }
             </h3>
             <h3>
                 other books by this Auther
@@ -25,9 +44,10 @@ const BookDetails = ({hidden}) =>{
         </div>
     )
 }
-
-const mapStateToProps = ({book : {hidden}}) => ({
-    hidden
-})
+const mapStateToProps = createStructuredSelector({
+    hidden: selectIsHidden,
+    fetching: selectIsBookFetching,
+    currentBook: selectCurrentBook
+  });
 
 export default connect(mapStateToProps)(BookDetails);
