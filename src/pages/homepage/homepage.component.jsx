@@ -33,7 +33,7 @@ const HomePage = ({ currentUser}) => {
                 {currentUser?
                 (
                     currentUser.bookList?
-                    <BookList booklist={currentUser.bookList}/> 
+                    <BookList booklist={currentUser.bookList} bookIds={currentUser.bookIDs}/> 
                     :
                     "you have no books added currently"
                 ) 

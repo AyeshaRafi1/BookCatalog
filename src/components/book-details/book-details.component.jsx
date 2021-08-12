@@ -23,16 +23,16 @@ const BookDetails = ({ currentBook, fetching, hidden } ) =>{
                 ?
                 <div>
                     <h2>
-                        {currentBook.name}
+                        {currentBook.Name}
                     </h2>
                     <h3>
-                        {currentBook.genre.join(", ")}
+                        {currentBook.Genre.join(", ")}
                     </h3>
                     <h3>
                         {currentBook.Author}
                     </h3>
                     <h3>
-                        other ooks by this Auther
+                        Other Books by this Author
                     </h3>
                     <ul>
                         <li>harry potter part 2</li>

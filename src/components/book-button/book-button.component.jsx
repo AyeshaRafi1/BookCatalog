@@ -7,28 +7,29 @@ import './book-button.styles.scss';
 import { toggleBookHidden,fetchBookStartAsync } from '../../redux/books/books.actions';
 import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../../redux/books/books.selectors';
 
-const Book =({name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
+const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
-    const stuff = async ()=> {
-        
+    const fetchBookAndToggleDetails = async ()=> {
+        console.log(bookind)
         if (currentBook){
-            if (currentBook.name === name){
+            if (currentBook.Name === name){
                 toggleBookHidden()
             }
             else if (hidden) {
-                await fetchBookStartAsync(name)
+                
+                await fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
             else {
-                await fetchBookStartAsync(name)
+                await fetchBookStartAsync(bookind)
             }
         }
         else {
             if(error){
-                await fetchBookStartAsync(name)
+                await fetchBookStartAsync(bookind)
             }
             else{
-                await fetchBookStartAsync(name)
+                await fetchBookStartAsync(bookind)
                 toggleBookHidden()
 
             }
@@ -37,7 +38,7 @@ const Book =({name, fetchBookStartAsync, toggleBookHidden, currentBook, error, h
         
     }
     return (
-        <button className='book'onClick={stuff}> {name}</button>
+        <button className='book'onClick={fetchBookAndToggleDetails}> {name}</button>
     )
 }
 

@@ -24,17 +24,16 @@ export const fetchBookFailure = errorMessage => ({
   payload: errorMessage
 });
 
-export const fetchBookStartAsync = (name) => {
+export const fetchBookStartAsync = (id) => {
   return dispatch => {
-    const BookRef = firestore.collection("books").doc(name.toLowerCase());
+    const BookRef = firestore.collection("books").doc(id);
     dispatch(fetchBookStart());
 
     BookRef.get().then(snapshot => 
-        {
-            let book= snapshot.data();
-            book["name"] = name;
-            dispatch(fetchBookSuccess(book));
-        })
+    {
+      const book= snapshot.data();
+      dispatch(fetchBookSuccess(book));
+    })
         .catch(error => dispatch(fetchBookFailure(error.message)));
   };
 };
