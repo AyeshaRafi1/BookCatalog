@@ -9,3 +9,6 @@ export const toggleAddBook = () => ({
   type: UserActionTypes.TOGGLE_ADD_BOOK
 });
 
+export const toggleDeleteBook = () => ({
+  type: UserActionTypes.TOGGLE_DELETE_BOOK
+})

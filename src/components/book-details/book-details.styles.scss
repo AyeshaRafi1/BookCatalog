@@ -1,9 +1,24 @@
 .book-details {
+    display: flex;
+    flex-direction: column;
     background-color: #af3859 ;
-    height: 92vh;
+    min-height: 92vh;
     width: 50%;
     color: white;
     padding: 2%;
+
+    .book-title {
+        margin: 10px 0px;
+    }
+    .book-info {
+        margin: 20px 0;
+        font-size: 22px;
+    }
+    .delete-book-button-display{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: auto;
+    }
 }
 .hidden {
     display: none;

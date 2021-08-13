@@ -11,3 +11,8 @@ export const selectAddBook = createSelector(
   [selectUser],
   user => user.addBook
 )
+
+export const selectDeleteBook = createSelector(
+  [selectUser],
+  user => user.deleteBook
+)

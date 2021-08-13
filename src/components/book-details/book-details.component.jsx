@@ -6,9 +6,12 @@ import './book-details.styles.scss';
 
 
 import { selectCurrentBook, selectIsBookFetching, selectIsHidden, selectIsAuthorFetching,selectOtherBooksByAuthor} from '../../redux/books/books.selectors';
+import { selectDeleteBook } from '../../redux/user/user.selectors';
+import DeleteBookButton from '../delete-book-button/delete-book-button.component';
+import ConfirmDelete from '../confirm-delete/confirm-delete.component';
 
 
-const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuthor } ) =>{
+const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuthor ,deleteBook } ) =>{
 
 
     return (
@@ -22,18 +25,18 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuth
                 currentBook
                 ?
                 <div>
-                    <h2>
+                    <h2 className="book-title">
                         {currentBook.Name}
                     </h2>
-                    <h3>
+                    <h4 className="book-info">
                         {currentBook.Genre.join(", ")}
-                    </h3>
-                    <h3>
+                    </h4>
+                    <h4 className="book-info">
                         {currentBook.Author}
-                    </h3>
-                    <h3>
+                    </h4>
+                    <h4 className="book-info">
                         Other Books by this Author
-                    </h3>
+                    </h4>
                     {
                         fetchingA
                         ?
@@ -60,7 +63,11 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuth
             }
             </div>
             }
-
+            <div className="delete-book-button-display">
+            
+            { deleteBook?<ConfirmDelete/>:null}
+            <DeleteBookButton/>
+            </div>
         </div>
     )
 }
@@ -69,7 +76,8 @@ const mapStateToProps = createStructuredSelector({
     fetching: selectIsBookFetching,
     currentBook: selectCurrentBook,
     otherBooksByAuthor: selectOtherBooksByAuthor,
-    fetchingA: selectIsAuthorFetching
+    fetchingA: selectIsAuthorFetching,
+    deleteBook:selectDeleteBook
   });
 
 export default connect(mapStateToProps)(BookDetails);

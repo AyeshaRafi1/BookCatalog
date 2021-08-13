@@ -10,7 +10,7 @@ import './add-book-button.styles.scss';
 
 const AddBookButton = ({toggleAddBook}) => {
     return(
-        <IconContext.Provider value={{ style: {fontSize: '70px', color: "rgb(175,56,89)"}}}>
+        <IconContext.Provider value={{ style: {fontSize: '55px', color: "rgb(175,56,89)"}}}>
             <div className="Add-book-icon" onClick={toggleAddBook} >
                 <FaPlusCircle/>
             </div>
