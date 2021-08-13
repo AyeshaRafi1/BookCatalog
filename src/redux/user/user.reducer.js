@@ -1,7 +1,8 @@
 import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  addBook:false
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -11,6 +12,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: action.payload
       };
+    case UserActionTypes.TOGGLE_ADD_BOOK:
+      return {
+        ...state,
+        addBook:!state.addBook
+      }
     default:
       return state;
   }

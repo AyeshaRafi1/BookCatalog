@@ -7,6 +7,7 @@ import './book-button.styles.scss';
 import { toggleBookHidden,fetchBookStartAsync } from '../../redux/books/books.actions';
 import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../../redux/books/books.selectors';
 import { fetchAuthorStartAsync } from '../../redux/authors/authors.actions';
+
 const Book =({bookind, name, fetchBookStartAsync,fetchAuthorStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
     const fetchBookAndAuthorAndToggleDetails = async ()=> {
@@ -35,7 +36,7 @@ const Book =({bookind, name, fetchBookStartAsync,fetchAuthorStartAsync, toggleBo
         }     
     }
     return (
-        <button className='book'onClick={fetchBookAndAuthorAndToggleDetails}> {name}</button>
+        <button className='book' onClick={fetchBookAndAuthorAndToggleDetails}> {name}</button>
     )
 }
 

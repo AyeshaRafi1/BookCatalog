@@ -5,12 +5,12 @@ import { createStructuredSelector } from 'reselect';
 import AddBookButton from '../../components/add-book-button/add-book-button.component';
 import BookList from "../../components/book-list/book-list.component";
 
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCurrentUser, selectAddBook } from '../../redux/user/user.selectors';
 import AddBook from '../add-book/add-book.component';
 
 import './book-tiles.styles.scss';
 
-const BookTiles = ({ currentUser}) => {
+const BookTiles = ({ currentUser, addBook}) => {
     
     return(
         <div className='left-container'>
@@ -39,7 +39,7 @@ const BookTiles = ({ currentUser}) => {
         }
         <div className="Adding-book">
             <AddBookButton/>
-            <AddBook/>
+            {addBook?<AddBook/>:null}
         </div>
         
         </div>
@@ -48,7 +48,8 @@ const BookTiles = ({ currentUser}) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
+    addBook:selectAddBook
   });
 
 export default connect(mapStateToProps)(BookTiles);
