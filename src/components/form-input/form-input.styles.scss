@@ -6,10 +6,15 @@ $main-color: black;
   font-size: 12px;
   color: $main-color;
 }
+.less-margin {
+  margin: 15px 0;
+}
+.more-margin {
+  margin: 45px 0;
+}
 
 .group {
   position: relative;
-  margin: 45px 0;
 
   .form-input {
     background: none;
@@ -22,7 +27,7 @@ $main-color: black;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $sub-color;
-    margin: 25px 0;
+    margin: 10px 0;
 
     &:focus {
       outline: none;

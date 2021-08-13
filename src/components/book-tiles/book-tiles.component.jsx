@@ -6,6 +6,7 @@ import AddBookButton from '../../components/add-book-button/add-book-button.comp
 import BookList from "../../components/book-list/book-list.component";
 
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import AddBook from '../add-book/add-book.component';
 
 import './book-tiles.styles.scss';
 
@@ -13,7 +14,7 @@ const BookTiles = ({ currentUser}) => {
     
     return(
         <div className='left-container'>
-            <h1>
+            <h1 className="heading">
                 {currentUser
                 ?
                 (
@@ -36,8 +37,11 @@ const BookTiles = ({ currentUser}) => {
         ) 
         : "page is loading"
         }
+        <div className="Adding-book">
+            <AddBookButton/>
+            <AddBook/>
+        </div>
         
-        <AddBookButton/>
         </div>
         
     );
