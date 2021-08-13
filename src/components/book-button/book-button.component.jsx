@@ -6,10 +6,10 @@ import './book-button.styles.scss';
 
 import { toggleBookHidden,fetchBookStartAsync } from '../../redux/books/books.actions';
 import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../../redux/books/books.selectors';
+import { fetchAuthorStartAsync } from '../../redux/authors/authors.actions';
+const Book =({bookind, name, fetchBookStartAsync,fetchAuthorStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
-const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
-
-    const fetchBookAndToggleDetails = async ()=> {
+    const fetchBookAndAuthorAndToggleDetails = async ()=> {
         console.log(bookind)
         if (currentBook){
             if (currentBook.Name === name){
@@ -31,27 +31,26 @@ const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook,
             else{
                 await fetchBookStartAsync(bookind)
                 toggleBookHidden()
-
             }
         }     
-        
-        
     }
     return (
-        <button className='book'onClick={fetchBookAndToggleDetails}> {name}</button>
+        <button className='book'onClick={fetchBookAndAuthorAndToggleDetails}> {name}</button>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
     toggleBookHidden: ()=> dispatch(toggleBookHidden()),
-    fetchBookStartAsync: (name) => dispatch(fetchBookStartAsync(name))
+    fetchBookStartAsync: (id) => dispatch(fetchBookStartAsync(id)),
+    fetchAuthorStartAsync: (id) => dispatch(fetchAuthorStartAsync(id))
 
 })
 
 const mapStateToProps = createStructuredSelector({
     currentBook: selectCurrentBook,
     error: selectIsErrorWhileFetching,
-    hidden: selectIsHidden
+    hidden: selectIsHidden,
+
   });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Book);

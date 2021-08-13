@@ -6,9 +6,9 @@ import './book-details.styles.scss';
 
 
 import { selectCurrentBook, selectIsBookFetching, selectIsHidden } from '../../redux/books/books.selectors';
+import { selectCurrentAuthor,selectIsAuthorFetching } from '../../redux/authors/authors.selectors';
 
-
-const BookDetails = ({ currentBook, fetching, hidden } ) =>{
+const BookDetails = ({ currentBook, fetching, hidden, fetchingA,currentAuthor } ) =>{
 
 
     return (
@@ -34,9 +34,23 @@ const BookDetails = ({ currentBook, fetching, hidden } ) =>{
                     <h3>
                         Other Books by this Author
                     </h3>
-                    <ul>
-                        <li>harry potter part 2</li>
-                    </ul>
+                    {/*
+                        fetchingA
+                        ?
+                        "still fetching data"
+                        :<div>(
+                            currentAuthor
+                            ?
+                            <ul>
+                            <li> {currentAuthor.Books.join(", ")} </li>
+                            </ul>
+                            :
+                            "sorry the other books by this author are not available"
+                        )
+                        </div>
+                        
+                        */}
+                    
                 </div>
                 : 
                 "sorry the details of this book are not available"
@@ -50,7 +64,9 @@ const BookDetails = ({ currentBook, fetching, hidden } ) =>{
 const mapStateToProps = createStructuredSelector({
     hidden: selectIsHidden,
     fetching: selectIsBookFetching,
-    currentBook: selectCurrentBook
+    currentBook: selectCurrentBook,
+    currentAuthor: selectCurrentAuthor,
+    fetchingA: selectIsAuthorFetching
   });
 
 export default connect(mapStateToProps)(BookDetails);
