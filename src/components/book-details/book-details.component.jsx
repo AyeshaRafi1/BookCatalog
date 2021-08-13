@@ -5,10 +5,10 @@ import { createStructuredSelector } from 'reselect';
 import './book-details.styles.scss';
 
 
-import { selectCurrentBook, selectIsBookFetching, selectIsHidden } from '../../redux/books/books.selectors';
-import { selectCurrentAuthor,selectIsAuthorFetching } from '../../redux/authors/authors.selectors';
+import { selectCurrentBook, selectIsBookFetching, selectIsHidden, selectIsAuthorFetching,selectOtherBooksByAuthor} from '../../redux/books/books.selectors';
 
-const BookDetails = ({ currentBook, fetching, hidden, fetchingA,currentAuthor } ) =>{
+
+const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuthor } ) =>{
 
 
     return (
@@ -34,22 +34,25 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,currentAuthor } 
                     <h3>
                         Other Books by this Author
                     </h3>
-                    {/*
+                    {
                         fetchingA
                         ?
                         "still fetching data"
-                        :<div>(
-                            currentAuthor
+                        :<div>{
+                            otherBooksByAuthor
                             ?
                             <ul>
-                            <li> {currentAuthor.Books.join(", ")} </li>
+                                {otherBooksByAuthor.map((name,id) => (
+                                    <li key={id}> {name} </li>
+                                    ))
+                                }
                             </ul>
                             :
                             "sorry the other books by this author are not available"
-                        )
+                            }
                         </div>
                         
-                        */}
+                        }
                     
                 </div>
                 : 
@@ -65,7 +68,7 @@ const mapStateToProps = createStructuredSelector({
     hidden: selectIsHidden,
     fetching: selectIsBookFetching,
     currentBook: selectCurrentBook,
-    currentAuthor: selectCurrentAuthor,
+    otherBooksByAuthor: selectOtherBooksByAuthor,
     fetchingA: selectIsAuthorFetching
   });
 

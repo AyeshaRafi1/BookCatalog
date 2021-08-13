@@ -6,31 +6,30 @@ import './book-button.styles.scss';
 
 import { toggleBookHidden,fetchBookStartAsync } from '../../redux/books/books.actions';
 import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../../redux/books/books.selectors';
-import { fetchAuthorStartAsync } from '../../redux/authors/authors.actions';
 
-const Book =({bookind, name, fetchBookStartAsync,fetchAuthorStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
+const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
     const fetchBookAndAuthorAndToggleDetails = async ()=> {
-        console.log(bookind)
+
         if (currentBook){
             if (currentBook.Name === name){
                 toggleBookHidden()
             }
             else if (hidden) {
                 
-                await fetchBookStartAsync(bookind)
+                fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
             else {
-                await fetchBookStartAsync(bookind)
+                fetchBookStartAsync(bookind)
             }
         }
         else {
             if(error){
-                await fetchBookStartAsync(bookind)
+                fetchBookStartAsync(bookind)
             }
             else{
-                await fetchBookStartAsync(bookind)
+                fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
         }     
@@ -42,8 +41,7 @@ const Book =({bookind, name, fetchBookStartAsync,fetchAuthorStartAsync, toggleBo
 
 const mapDispatchToProps = dispatch => ({
     toggleBookHidden: ()=> dispatch(toggleBookHidden()),
-    fetchBookStartAsync: (id) => dispatch(fetchBookStartAsync(id)),
-    fetchAuthorStartAsync: (id) => dispatch(fetchAuthorStartAsync(id))
+    fetchBookStartAsync: (id) => dispatch(fetchBookStartAsync(id))
 
 })
 

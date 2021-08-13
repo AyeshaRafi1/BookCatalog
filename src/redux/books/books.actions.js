@@ -25,16 +25,47 @@ export const fetchBookFailure = errorMessage => ({
   payload: errorMessage
 });
 
+export const fetchAuthorStart = () => ({
+  type: BookActionTypes.FETCH_AUTHOR_START
+});
+
+export const fetchAuthorSuccess = author => ({
+  type: BookActionTypes.FETCH_AUTHOR_SUCCESS,
+  payload: author
+});
+
+export const fetchAUthorFailure = errorMessage => ({
+  type: BookActionTypes.FETCH_AUTHOR_FAILURE,
+  payload: errorMessage
+});
+
+
 export const fetchBookStartAsync = (id) => {
   return dispatch => {
     const BookRef = firestore.collection("books").doc(id);
     dispatch(fetchBookStart());
 
-    BookRef.get().then(snapshot => 
+    BookRef
+    .get()
+    .then(snapshot => 
     {
       const book= snapshot.data();
       dispatch(fetchBookSuccess(book));
-    })
-        .catch(error => dispatch(fetchBookFailure(error.message)));
+    
+      const AuthorRef= firestore.collection("Authors").doc(book.AuthorID);
+      dispatch(fetchAuthorStart());
+
+      AuthorRef
+      .get()
+      .then( snapshot => 
+      {
+        const author = snapshot.data();
+        dispatch(fetchAuthorSuccess(author.Books))
+      })
+      .catch(error => dispatch(fetchAUthorFailure(error.message)))
+      
+    }).catch(error => dispatch(fetchBookFailure(error.message)));
+
+  
   };
 };
