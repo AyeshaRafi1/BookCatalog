@@ -5,8 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import './book-details.styles.scss';
 
 
-import { selectCurrentBook, selectIsBookFetching, selectIsHidden, selectIsAuthorFetching,selectOtherBooksByAuthor} from '../../redux/books/books.selectors';
-import { selectDeleteBook } from '../../redux/user/user.selectors';
+import { selectCurrentBook, selectDeleteBook, selectIsBookFetching, selectIsHidden, selectIsAuthorFetching,selectOtherBooksByAuthor} from '../../redux/books/books.selectors';
 import DeleteBookButton from '../delete-book-button/delete-book-button.component';
 import ConfirmDelete from '../confirm-delete/confirm-delete.component';
 

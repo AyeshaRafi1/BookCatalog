@@ -30,13 +30,15 @@ const BookTiles = ({ currentUser, addBook}) => {
         {currentUser
         ?
         (
-            currentUser.bookList?
+            currentUser.bookList?.length?
             <BookList booklist={currentUser.bookList} bookIds={currentUser.bookIDs}/> 
             :
             "you have no books added currently"
         ) 
         : "page is loading"
         }
+
+        
         <div className="Adding-book">
             <AddBookButton/>
             {addBook?<AddBook/>:null}

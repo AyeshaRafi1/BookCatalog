@@ -4,7 +4,8 @@ import {FaTrash} from "react-icons/fa"
 import {IconContext} from "react-icons"
 
 import './delete-book-button.styles.scss';
-import { toggleDeleteBook } from '../../redux/user/user.actions';
+
+import { toggleDeleteBook } from '../../redux/books/books.actions';
 import { connect } from 'react-redux';
 
 const DeleteBookButton = ({toggleDeleteBook}) => {

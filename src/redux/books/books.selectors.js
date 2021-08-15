@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 const selectBook = state => state.book;
 
+export const selectDeleteBook = createSelector(
+  [selectBook],
+  book => book.deleteBook
+)
+
 export const selectOtherBooksByAuthor = createSelector(
   [selectBook],
   book => book.otherBooksByAuthor

@@ -17,19 +17,19 @@ const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook,
             }
             else if (hidden) {
                 
-                fetchBookStartAsync(bookind)
+                await fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
             else {
-                fetchBookStartAsync(bookind)
+                await fetchBookStartAsync(bookind)
             }
         }
         else {
             if(error){
-                fetchBookStartAsync(bookind)
+                await fetchBookStartAsync(bookind)
             }
             else{
-                fetchBookStartAsync(bookind)
+                await fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
         }     

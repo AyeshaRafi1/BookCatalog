@@ -1,7 +1,13 @@
 import BookActionTypes from "./books.types";
 import { firestore } from "../../firebase/firebase.utils";
 
+export const deleteBook = () => ({
+  type: BookActionTypes.DELETE_BOOK
+})
 
+export const toggleDeleteBook = () => ({
+  type: BookActionTypes.TOGGLE_DELETE_BOOK
+});
 
 export const toggleBookHidden = () => ({
     type: BookActionTypes.TOGGLE_BOOK_HIDDEN
