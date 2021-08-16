@@ -45,7 +45,7 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuth
                             ?
                             <ul>
                                 {otherBooksByAuthor.map((name,id) => (
-                                    <li key={id}> {name} </li>
+                                    <li className="list-item" key={id}> {name} </li>
                                     ))
                                 }
                             </ul>

@@ -1,13 +1,23 @@
 .add-book {
   display: flex;
   flex-direction: column;
-  width: 240px;
+  width: 300px;
   border-radius: 2px;
   border-style: solid;
   border-width: 1px;
   border-color: grey;
   padding: 10px 18px;
+  margin-bottom: 10px;
+  margin-top: auto;
 
+  @media screen and (max-width: 1400px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 500px) {
+    width: 170px;
+  }
+
+  
   .sign-up-form{
     text-align: center;
   }

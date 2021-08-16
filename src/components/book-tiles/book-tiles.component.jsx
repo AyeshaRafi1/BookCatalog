@@ -40,7 +40,7 @@ const BookTiles = ({ currentUser, addBook}) => {
 
         
         <div className="Adding-book">
-            <AddBookButton/>
+            <AddBookButton className="Add_book_button_flex"/>
             {addBook?<AddBook/>:null}
         </div>
         

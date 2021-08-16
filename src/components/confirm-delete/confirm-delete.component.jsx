@@ -40,7 +40,7 @@ const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBoo
 
     return (
         <div className="confirm-delete">
-            <p>Are you sure you want to delete this book?</p>
+            <p className="confirm-delete-text">Are you sure you want to delete this book?</p>
             <div className="confirm buttons">
                 <CustomButton onClick={removeBookAndHideBookDetails} >yes</CustomButton>
                 <CustomButton onClick={toggleDeleteBook} >no</CustomButton>
