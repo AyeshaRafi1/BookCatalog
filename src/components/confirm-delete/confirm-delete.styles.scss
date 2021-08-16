@@ -9,15 +9,25 @@
     max-width: 400px;
 
     .confirm-delete-text {
-        margin: 3px 0px;
+        margin: 10px 0px;
+        @media screen and (max-width: 830px) {
+            margin: 5px 0px;
+        }
+        @media screen and (max-width: 500px) {
+            margin: 2px 0px;
+        }
     }
 
-    @media screen and (max-width: 850px) {
-        font-size: 20px;
+    @media screen and (max-width: 830px) {
+        font-size: 22px;
         padding: 15px;
     }
     @media screen and (max-width: 500px) {
         font-size: 18px;
         padding: 10px;
     }
+    @media screen and (max-width: 305px) {
+        font-size: 15px;
+        padding: 5px;
+      }
 }
