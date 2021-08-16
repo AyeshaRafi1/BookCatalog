@@ -20,12 +20,16 @@ const config = {
     if (!snapShot.exists) {
       const { displayName, email } =userAuth;
       const createdAt = new Date();
-
+      const bookIDs= []
+      const bookList=[]
+      
       try {
         await userRef.set ({
           displayName,
           email,
           createdAt,
+          bookIDs,
+          bookList,
           ...additionalData
         })
       } catch (error) {
@@ -35,33 +39,81 @@ const config = {
     return userRef
   };
 
-  export const getBookDetails = async (bookName)=> {
-    if (!bookName) return;
+  export const findInCollection = async (collection, name) => {
+    const collectionRef= firestore.collection(collection)
+    
+    const allFiles = await collectionRef.get()
 
-    const userRef=firestore.doc(`books/${bookName.toLowerCase()}`);
-
-    const snapShot =await userRef.get();
-    if (snapShot.exists) {
-
-      const { Author, genre } = await snapShot.data();
-
-      console.log(Author,genre)
+    const matchIds= allFiles.docs.map(document => {
+      const { Name } =  document.data();
+      if (Name === name){
+        return document.id
+      }
+      return null
+    })
+    
+    for (const element of matchIds) {
+      if (element!= null){
+        return element
+      }
     }
+
+    return null
   };
 
-  export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-    const collectionRef = firestore.collection(collectionKey);
+  export const createNewAuthor = async author =>{
+    const docRef =  firestore.collection("Authors").doc();
+    const docId =  docRef.id;
 
-    const batch = firestore.batch();
+    await docRef.set({Name: author , Books:[]});
+    return docId    
+  }
 
-    objectsToAdd.forEach (obj =>{
-      const newDocRef =collectionRef.doc();
-      batch.set(newDocRef,obj)
-    });
+  export const createNewBook = async(bookName,genre, author , authorId) => {
 
-    return await batch.commit()
+    const docRef = firestore.collection("books").doc();
+    const docId = docRef.id;
+    
+    const Data ={
+      Name: bookName,
+      Author: author,
+      AuthorID:authorId,
+      Genre:genre
+    }
 
-  };
+    await docRef.set(Data);
+
+    return docId
+  }
+
+
+  export const addBookToAuthor= async (authorId,bookName) => {
+    const AuthorRef = firestore.collection("Authors").doc(authorId);
+
+    const snapShot = await AuthorRef.get()
+    
+    const author = snapShot.data();
+
+    if (author.Books.length===1){
+      await AuthorRef.update({Books: [author.Books[0], bookName] })
+    }
+    else if (author.Books.length===0){
+      await AuthorRef.update({Books: [bookName] })
+    }
+    else {
+      await AuthorRef.update({Books: [...author.Books, bookName]})
+
+    }
+  }
+
+  export const createAuthorDocument = async (author) => {
+    const docRef = firestore.collection("Author").doc();
+    const docId = docRef.id;
+
+    await docRef.set({Name: author});
+
+    return docId
+  }
 
 
   firebase.initializeApp(config);

@@ -9,10 +9,10 @@ import './confirm-delete.styles.scss';
 import { toggleDeleteBook, toggleBookHidden } from '../../redux/books/books.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectCurrentBook } from '../../redux/books/books.selectors'; 
-import { removeBook } from '../../redux/user/user.actions';
+import { updateBooks } from '../../redux/user/user.actions';
 
 
-const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBook,removeBook}) => {
+const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBook,updateBooks}) => {
 
     const removeBookAndHideBookDetails = () =>{
 
@@ -32,7 +32,7 @@ const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBoo
         copyCurrentUser.bookList= filteredBooks
         copyCurrentUser.bookIDs=filteredIds
 
-        removeBook(copyCurrentUser)
+        updateBooks(copyCurrentUser)
 
 
         toggleBookHidden()
@@ -55,7 +55,7 @@ const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBoo
 const mapDispatchToProps = dispatch => ({ 
     toggleDeleteBook: ()=>dispatch(toggleDeleteBook()),
     toggleBookHidden: ()=>dispatch(toggleBookHidden()),
-    removeBook: user =>dispatch(removeBook(user))
+    updateBooks: user =>dispatch(updateBooks(user))
 
 })
 

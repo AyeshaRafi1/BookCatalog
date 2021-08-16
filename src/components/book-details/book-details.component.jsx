@@ -28,13 +28,13 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuth
                         {currentBook.Name}
                     </h2>
                     <h4 className="book-info">
-                        {currentBook.Genre.join(", ")}
+                        {currentBook.Genre}
                     </h4>
                     <h4 className="book-info">
                         {currentBook.Author}
                     </h4>
                     <h4 className="book-info">
-                        Other Books by this Author
+                        All Books by this Author
                     </h4>
                     {
                         fetchingA

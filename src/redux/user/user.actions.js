@@ -11,11 +11,12 @@ export const toggleAddBook = () => ({
 });
 
 
-export const removeBook = user => {
+export const updateBooks = user => {
 
   return dispatch => {
+    dispatch(setCurrentUser(user));
+
     firestore.collection("user").doc(user.id).update({bookList: user.bookList, bookIDs: user.bookIDs});
     
-    dispatch(setCurrentUser(user));
   }
 }
