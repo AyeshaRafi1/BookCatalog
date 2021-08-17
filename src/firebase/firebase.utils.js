@@ -12,6 +12,7 @@ const config = {
   measurementId: "G-FQVRK2P83V"
 };
 
+  // creating user profile document where if a user is not registered before they become a part of the database
   export const createUserProfileDocument = async (userAuth, additionalData)=> {
     if (!userAuth) return;
     const userRef=firestore.doc(`user/${userAuth.uid}`);
@@ -34,11 +35,14 @@ const config = {
         })
       } catch (error) {
         console.log('error creating user', error.message)
+        alert('error creating user', error.message)
       }
     }
     return userRef
   };
 
+
+  // finding name of Author or books in collections
   export const findInCollection = async (collection, name) => {
     const collectionRef= firestore.collection(collection)
     
@@ -61,6 +65,7 @@ const config = {
     return null
   };
 
+  // creating a new author document
   export const createNewAuthor = async author =>{
     const docRef =  firestore.collection("Authors").doc();
     const docId =  docRef.id;
@@ -69,6 +74,7 @@ const config = {
     return docId    
   }
 
+  // creating a new book document
   export const createNewBook = async(bookName,genre, author , authorId) => {
 
     const docRef = firestore.collection("books").doc();
@@ -87,6 +93,7 @@ const config = {
   }
 
 
+  // adding a new book to an Author that already exists
   export const addBookToAuthor= async (authorId,bookName) => {
     const AuthorRef = firestore.collection("Authors").doc(authorId);
 
@@ -104,15 +111,6 @@ const config = {
       await AuthorRef.update({Books: [...author.Books, bookName]})
 
     }
-  }
-
-  export const createAuthorDocument = async (author) => {
-    const docRef = firestore.collection("Author").doc();
-    const docId = docRef.id;
-
-    await docRef.set({Name: author});
-
-    return docId
   }
 
 

@@ -16,22 +16,27 @@ const ConfirmDelete = ({toggleDeleteBook,toggleBookHidden,currentUser,currentBoo
 
     const removeBookAndHideBookDetails = () =>{
 
+        // getting the index of the current book that we want to delete
         const index = currentUser.bookList.indexOf(currentBook.Name)
+
+        // filtered books is an array of books that does not include the book we wanna delete
         const filteredBooks = currentUser.bookList.filter((value) => { 
             return value !== currentBook.Name;
         });
 
+        // removing the selected book ID from the list of book IDs using the splice method
         let filteredIds= [...currentUser.bookIDs]
         filteredIds.splice(index, 1)
 
 
+        // creating a shallow copy of the current user so that react renders the new state
         let copyCurrentUser= {
             ...currentUser
         }
 
         copyCurrentUser.bookList= filteredBooks
         copyCurrentUser.bookIDs=filteredIds
-
+        // updating current user
         updateBooks(copyCurrentUser)
 
 

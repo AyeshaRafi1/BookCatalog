@@ -8,8 +8,9 @@ import CustomButton from '../custom-button/custom-button.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { updateBooks, setCurrentUser } from '../../redux/user/user.actions';
 
-import { findInCollection,createNewAuthor,addBookToAuthor, createNewBook} from '../../firebase/firebase.utils';
+//import { findInCollection,createNewAuthor,addBookToAuthor, createNewBook} from '../../firebase/firebase.utils';
 
+import { addNewBookAndAuthor } from '../utility';
 import './add-book.styles.scss';
 
 class AddBook extends React.Component {
@@ -22,33 +23,23 @@ class AddBook extends React.Component {
       author: ''
     };
   }
-  //getting the book name genre and author entered by the user
-  // getting the props
-  // checking to see if the book already does not exist in the book list that the user has
-  // checking to see if the book already exits in out books collection or not
-  // if the book does not exist we need to check if the author exists or not. if the book exists we need to do nothing else
-  // if author Id does not exist then we need to create a new document for that author
-  // finally we need to add the book to the author document
-  // now that we have the author Id we need to put the book data in the books collection
+  
   // finally we need to add the the book to our list and update the books list in the user
 
   handleSubmit = async event => {
     event.preventDefault();
 
+    //getting the book name genre and author entered by the user getting the props
     const { bookName,genre, author } = this.state;
-
     const {currentUser , updateBooks, setCurrentUser}= this.props
 
+
     try {
-      
+      // checking to see if the book already does not exist in the book list that the user has
       if (currentUser.bookList.includes(bookName))
       {
         alert("you already have this book in your list")
-        this.setState({
-          bookName: '',
-          genre: '',
-          author: ''
-        });
+        this.setState({bookName: '',genre: '',author: ''});
         return;
       }
 
@@ -58,24 +49,14 @@ class AddBook extends React.Component {
         ...currentUser
       }
       copyCurrentUser.bookList= allBooks
-
+      // setting the book name in the current user of the new book so that the user does not observe the delay 
       setCurrentUser(copyCurrentUser)
 
-      let bookId = await findInCollection("books", bookName)
-  
+      // clearing the values that the user entred from the input field so the user thinks the action has been performed
+      this.setState({bookName: '',genre: '',author: ''});
 
-      let authorId
-      if(!bookId){
-
-        authorId= await findInCollection("Authors", author)
-
-        if(!authorId){
-          authorId= await createNewAuthor(author)
-        }
-        await addBookToAuthor(authorId,bookName)
-
-        bookId= await createNewBook (bookName,genre, author , authorId)
-      }
+      // utility function checking all the edge cases that need to be checked when the user addes a book
+      const bookId = await addNewBookAndAuthor(bookName,genre, author);
       
       const allBookIds= [...currentUser.bookIDs, bookId]
 
@@ -83,12 +64,6 @@ class AddBook extends React.Component {
 
       updateBooks(copyCurrentUser)
       
-      // clearing the values that the user entred from the input field
-      this.setState({
-        bookName: '',
-        genre: '',
-        author: ''
-      });
     } catch (error) {
       console.error(error);
     }
