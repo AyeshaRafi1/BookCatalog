@@ -9,6 +9,14 @@ import { selectCurrentBook ,selectIsErrorWhileFetching,selectIsHidden} from '../
 
 const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook, error, hidden})=>{
 
+    const isCurrentBook = ()=>{
+        if (currentBook && !hidden && currentBook.Name===name){
+            return true
+        }
+        else{
+            return false
+        }
+    }
     const fetchBookAndAuthorAndToggleDetails = async ()=> {
 
         if (currentBook){
@@ -37,10 +45,13 @@ const Book =({bookind, name, fetchBookStartAsync, toggleBookHidden, currentBook,
                 await fetchBookStartAsync(bookind)
                 toggleBookHidden()
             }
-        }     
+        }  
+        //${isSelected? 'selected-book' : ''} 
+        
     }
     return (
-        <button className='book' onClick={fetchBookAndAuthorAndToggleDetails}> {name}</button>
+        
+        <button className={`${isCurrentBook()? 'selected-book' : ''} book`} onClick={fetchBookAndAuthorAndToggleDetails}> {name}</button>
     )
 }
 

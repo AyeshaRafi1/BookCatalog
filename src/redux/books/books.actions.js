@@ -1,6 +1,10 @@
 import BookActionTypes from "./books.types";
 import { firestore } from "../../firebase/firebase.utils";
 
+export const deleteBook = () => ({
+  type: BookActionTypes.DELETE_BOOK
+})
+
 export const toggleDeleteBook = () => ({
   type: BookActionTypes.TOGGLE_DELETE_BOOK
 });
@@ -42,21 +46,22 @@ export const fetchAUthorFailure = errorMessage => ({
 });
 
 
-export const fetchBookStartAsync = async(id) => {
-  return async dispatch => {
-    const bookRef = firestore.collection("books").doc(id);
+export const fetchBookStartAsync = (id) => {
+  return dispatch => {
+    const BookRef = firestore.collection("books").doc(id);
+    dispatch(fetchBookStart());
 
-    bookRef
+    BookRef
     .get()
     .then(snapshot => 
     {
       const book= snapshot.data();
       dispatch(fetchBookSuccess(book));
     
-      const authorRef= firestore.collection("Authors").doc(book.AuthorID);
+      const AuthorRef= firestore.collection("Authors").doc(book.AuthorID);
       dispatch(fetchAuthorStart());
 
-      authorRef
+      AuthorRef
       .get()
       .then( snapshot => 
       {

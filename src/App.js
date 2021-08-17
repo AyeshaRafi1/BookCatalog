@@ -51,6 +51,7 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
+          <Route exact path='/homepage' component={HomePage} />
           <Route
             exact
             path='/'
@@ -62,7 +63,6 @@ class App extends React.Component {
               )
             }
           />
-          <Route path='/homepage' component={HomePage} />
           
         </Switch>
       </div>

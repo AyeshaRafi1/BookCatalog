@@ -8,6 +8,7 @@ import './book-details.styles.scss';
 import { selectCurrentBook, selectDeleteBook, selectIsBookFetching, selectIsHidden, selectIsAuthorFetching,selectOtherBooksByAuthor} from '../../redux/books/books.selectors';
 import DeleteBookButton from '../delete-book-button/delete-book-button.component';
 import ConfirmDelete from '../confirm-delete/confirm-delete.component';
+import Spinner from '../spinner/spinner.component';
 
 
 const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuthor ,deleteBook } ) =>{
@@ -17,29 +18,29 @@ const BookDetails = ({ currentBook, fetching, hidden, fetchingA,otherBooksByAuth
         <div className={`book-details ${hidden? "hidden": ""}`}>
             {fetching
             ?
-            "still fetching data"
+            <Spinner/>
             :
             <div>
             {
                 currentBook
                 ?
                 <div>
-                    <h2 className="book-title">
+                    <h1 className="book-title">
                         {currentBook.Name}
-                    </h2>
-                    <h4 className="book-info">
+                    </h1>
+                    <h2 className="book-info">
                         {currentBook.Genre}
-                    </h4>
-                    <h4 className="book-info">
+                    </h2>
+                    <h2 className="book-info">
                         {currentBook.Author}
-                    </h4>
-                    <h4 className="book-info">
+                    </h2>
+                    <h2 className="book-info">
                         All Books by this Author
-                    </h4>
+                    </h2>
                     {
                         fetchingA
                         ?
-                        "still fetching data"
+                        <Spinner/>
                         :<div>{
                             otherBooksByAuthor
                             ?

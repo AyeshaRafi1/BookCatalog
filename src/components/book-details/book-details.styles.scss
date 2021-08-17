@@ -18,21 +18,21 @@
     }
 
     .book-title {
-        margin: 10px 0px;
+        margin: 25px 0px;
         word-break: break-all;
 
         @media screen and (max-width: 830px) {
-            margin: 8px 0px;
+            margin: 10px 0px;
             font-size: 30px;
         }
         @media screen and (max-width: 500px) {
-            margin: 6px 0px;
+            margin: 8px 0px;
             font-size: 22px;
         }
     }
     .book-info {
-        margin: 20px 0;
-        font-size: 22px;
+        margin: 25px 0;
+        font-size: 25px;
         word-break: break-all;
 
         @media screen and (max-width: 830px) {

@@ -7,6 +7,7 @@ import BookList from "../../components/book-list/book-list.component";
 
 import { selectCurrentUser, selectAddBook } from '../../redux/user/user.selectors';
 import AddBook from '../add-book/add-book.component';
+import Spinner from '../spinner/spinner.component';
 
 import './book-tiles.styles.scss';
 
@@ -21,7 +22,7 @@ const BookTiles = ({ currentUser, addBook}) => {
                     currentUser.displayName ?
                     `${currentUser.displayName.split(' ')[0]}'s Reading List`
                     :
-                    "still fetching data"
+                    <Spinner/>
                 )
                 : null
                 }
@@ -30,12 +31,17 @@ const BookTiles = ({ currentUser, addBook}) => {
         {currentUser
         ?
         (
-            currentUser.bookList?.length?
+            currentUser.bookList
+            ?
+            currentUser.bookList.length
+            ?
             <BookList booklist={currentUser.bookList} bookIds={currentUser.bookIDs}/> 
             :
             "you have no books added currently"
+            :
+            <Spinner/>
         ) 
-        : "page is loading"
+        : <Spinner/>
         }
 
         

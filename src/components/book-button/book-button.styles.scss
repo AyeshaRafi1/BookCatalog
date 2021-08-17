@@ -8,7 +8,7 @@
     border-width: 2px;
     box-shadow:0 1px 0 0;
     padding: 15px 20px;
-    margin: 10px;
+    margin: 11px;
     cursor: pointer;
     word-break: break-all;
 
@@ -25,10 +25,9 @@
         padding: 6px 11px;
         border-width: 2px;
     }
-    
 
     &:hover {
-        border-width: 4px;  
+        border-width: 5px;  
         margin: 8px; 
 
         @media screen and (max-width: 850px) {
@@ -38,8 +37,23 @@
 
         @media screen and (max-width: 500px) {
             border-width: 3px;  
-            margin: 4px;
+            margin: 5px;
         }
+    }
+}
+
+.selected-book {
+    border-width: 5px;  
+    margin: 8px; 
+
+    @media screen and (max-width: 850px) {
+        border-width: 4px;  
+        margin: 6px;
+    }
+
+    @media screen and (max-width: 500px) {
+        border-width: 3px;  
+        margin: 5px;
     }
 }
 

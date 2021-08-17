@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from '../book-button/book-button.component';
+import Spinner from '../spinner/spinner.component';
 
 import './book-list.styles.scss';
 
@@ -12,7 +13,7 @@ const BookList = ({booklist,bookIds})=> {
                 <Book key={ind}  bookind={bookIds[ind]} name={book}/>
             )))
             :
-            null
+            <Spinner/>
         }    
         </div> 
     )
