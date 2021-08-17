@@ -8,10 +8,22 @@ import { toggleAddBook } from '../../redux/user/user.actions';
 
 import './add-book-button.styles.scss';
 
-const AddBookButton = ({toggleAddBook}) => {
+import { fetchAuthorStartAsync } from '../../redux/authors/authors.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectallAuthor } from '../../redux/authors/authors.selectors';
+
+const AddBookButton = ({toggleAddBook,fetchAuthorStartAsync,allAuthor}) => {
+
+    const onAddBookButtonClick= ()=>{
+        toggleAddBook()
+        if(!allAuthor){
+            fetchAuthorStartAsync()
+        }   
+    }
+
     return(
         <IconContext.Provider value={{ style: {fontSize: '55px', color: "rgb(175,56,89)"}}}>
-            <div className="Add-book-icon" onClick={toggleAddBook} >
+            <div className="Add-book-icon" onClick={onAddBookButtonClick} >
                 <FaPlusCircle/>
             </div>
         </IconContext.Provider>
@@ -21,7 +33,14 @@ const AddBookButton = ({toggleAddBook}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    toggleAddBook: ()=> dispatch(toggleAddBook())
+    toggleAddBook: ()=> dispatch(toggleAddBook()),
+    fetchAuthorStartAsync:()=> dispatch(fetchAuthorStartAsync())
 
 })
-export default connect(null,mapDispatchToProps)(AddBookButton);
+
+
+const mapStateToProps = createStructuredSelector({
+    allAuthor:selectallAuthor
+
+})
+export default connect(mapStateToProps,mapDispatchToProps)(AddBookButton);

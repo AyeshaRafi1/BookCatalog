@@ -10,7 +10,8 @@ import './sign-in-and-sign-up.styles.scss';
 
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const SignInAndSignUpPage = ({currentUser}) => (
+const SignInAndSignUpPage = ({currentUser}) => {
+  return(
   <div>
     {currentUser?
   (
@@ -30,7 +31,7 @@ const SignInAndSignUpPage = ({currentUser}) => (
   }
   
   </div>
-);
+)};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser

@@ -1,7 +1,7 @@
 import AuthorActionTypes from "./authors.types";
 
 const INITAL_STATE = {
-    currentAuthor: null,
+    allAuthors: null,
     isFetching: false,
     errorMessage: undefined
 };
@@ -18,20 +18,14 @@ const authorReducer = (state = INITAL_STATE, action) => {
             return{
                 ...state,
                 isFetching: false,
-                currentAuthor: action.payload
+                allAuthors: action.payload
             }
         case AuthorActionTypes.FETCH_AUTHOR_FAILURE:
             return {
                 ...state,
-                currentAuthor: null,
+                allAuthors: null,
                 isFetching: false,
                 errorMessage: action.payload
-            }
-        case AuthorActionTypes.INITIALIZE_AUTHOR_STATE:
-            return {
-                currentAuthor: null,
-                isFetching: false,
-                errorMessage: undefined
             }
         default:
             return state;

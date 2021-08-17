@@ -17,14 +17,9 @@ import { initalizeBookState } from './redux/books/books.actions';
 class App extends React.Component {
 
   unsubscribeFromAuth = null;
-  componentDidUpdate() {
-    console.log("an update just happened")
-  }
-
-  unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser,initalizeBookState } = this.props;
+    const {setCurrentUser,initalizeBookState} = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -51,7 +46,6 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          <Route exact path='/homepage' component={HomePage} />
           <Route
             exact
             path='/'
@@ -63,6 +57,7 @@ class App extends React.Component {
               )
             }
           />
+          <Route path='/homepage' component={HomePage} />
           
         </Switch>
       </div>

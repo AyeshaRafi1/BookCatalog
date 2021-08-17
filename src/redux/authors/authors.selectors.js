@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 
 const selectAuthor = state => state.author;
 
-export const selectCurrentAuthor = createSelector(
+export const selectallAuthor = createSelector(
   [selectAuthor],
-  author => author.currentAuthor
+  author => author.allAuthors
 );
 
 export const selectIsErrorWhileFetchingA = createSelector(
@@ -12,14 +12,9 @@ export const selectIsErrorWhileFetchingA = createSelector(
   author => !!author.errorMessage 
 )
 
-export const selectIsAuthorFetching = createSelector(
+export const selectIsAuthorsFetching = createSelector(
   [selectAuthor],
   author => author.isFetching
-);
-
-export const selectIsAuthorLoaded = createSelector(
-  [selectAuthor],
-  author => !!author.currentAuthor
 );
 
 

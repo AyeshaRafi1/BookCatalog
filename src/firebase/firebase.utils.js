@@ -41,6 +41,20 @@ const config = {
     return userRef
   };
 
+  //Fetching all Authors that we have in our database
+  export const getAllAuthors = async (collectionRef) => {
+    
+    const allFiles = await collectionRef.get()
+
+    const allAuthors = await allFiles.docs.map(document => {
+      const { Name } =  document.data();
+      return [document.id,Name]
+    })
+
+    console.log(allAuthors)
+
+    return allAuthors
+  };
 
   // finding name of Author or books in collections
   export const findInCollection = async (collection, name) => {
