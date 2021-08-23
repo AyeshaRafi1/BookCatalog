@@ -1,72 +1,69 @@
 .book-details {
-    display: flex;
-    flex-direction: column;
-    background-color: #af3859 ;
-    min-height: 92vh;
-    width: 50%;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #af3859;
+  min-height: 92vh;
+  width: 50%;
+  color: white;
+  padding: 2%;
+  box-shadow: -7px 8px 9px 0px lightgrey;
+
+  @media screen and (max-width: 920px) {
+    width: 63%;
     padding: 2%;
-    box-shadow: -7px 8px 9px 0px lightgrey;
+  }
 
+  @media screen and (max-width: 500px) {
+    width: 63%;
+    padding: 1.5%;
+  }
 
-    @media screen and (max-width: 920px) {
-        width: 63%;
-        padding: 2%;
+  .book-title {
+    margin: 25px 0px;
+    word-break: break-all;
+
+    @media screen and (max-width: 830px) {
+      margin: 10px 0px;
+      font-size: 30px;
     }
-
     @media screen and (max-width: 500px) {
-        width: 63%;
-        padding: 1.5%;
+      margin: 8px 0px;
+      font-size: 22px;
     }
+  }
+  .book-info {
+    margin: 25px 0;
+    font-size: 25px;
+    word-break: break-all;
 
-    .book-title {
-        margin: 25px 0px;
-        word-break: break-all;
-
-        @media screen and (max-width: 830px) {
-            margin: 10px 0px;
-            font-size: 30px;
-        }
-        @media screen and (max-width: 500px) {
-            margin: 8px 0px;
-            font-size: 22px;
-        }
+    @media screen and (max-width: 830px) {
+      margin: 16px 0;
+      font-size: 20px;
     }
-    .book-info {
-        margin: 25px 0;
-        font-size: 25px;
-        word-break: break-all;
-
-        @media screen and (max-width: 830px) {
-            margin: 16px 0;
-            font-size: 20px;
-        }
-        @media screen and (max-width: 500px) {
-            margin: 12px 0;
-            font-size: 14px;
-        }
+    @media screen and (max-width: 500px) {
+      margin: 12px 0;
+      font-size: 14px;
     }
-    .list-item{
-        word-break: break-all;
+  }
+  .list-item {
+    word-break: break-all;
 
-        @media screen and (max-width: 830px) {
-            font-size: 18px;
-        }
-        @media screen and (max-width: 500px) {
-            font-size: 12px;
-        }
+    @media screen and (max-width: 830px) {
+      font-size: 18px;
     }
-    .delete-book-button-display{
-        display: flex;
-        justify-content: flex-end;
-        margin-top: auto;
-        @media screen and (max-width: 730px) {
-            flex-direction: column;
-        }
-
-        
+    @media screen and (max-width: 500px) {
+      font-size: 12px;
     }
+  }
+  .delete-book-button-display {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    @media screen and (max-width: 730px) {
+      flex-direction: column;
+    }
+  }
 }
 .hidden {
-    display: none;
+  display: none;
 }

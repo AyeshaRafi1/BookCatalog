@@ -1,61 +1,58 @@
 .book {
-    text-decoration: none;
-    background-color: white;
-    font-size: 20px;
-    border-color: #af3859;
-    border-radius: 5px;
-    border-style: solid;
+  text-decoration: none;
+  background-color: white;
+  font-size: 20px;
+  border-color: #af3859;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  padding: 15px 20px;
+  margin: 11px;
+  cursor: pointer;
+  word-break: break-all;
+  box-shadow: 2px 3px 3px #af3859;
+
+  @media screen and (max-width: 850px) {
+    font-size: 18px;
+    margin: 8px;
+    padding: 10px 15px;
     border-width: 2px;
-    padding: 15px 20px;
-    margin: 11px;
-    cursor: pointer;
-    word-break: break-all;
-    box-shadow: 2px 3px 3px #af3859;
+  }
 
+  @media screen and (max-width: 580px) {
+    font-size: 15px;
+    margin: 6px;
+    padding: 6px 11px;
+    border-width: 2px;
+  }
 
-
-    @media screen and (max-width: 850px) {
-        font-size: 18px;
-        margin: 8px; 
-        padding: 10px 15px;
-        border-width: 2px;
-    }
-
-    @media screen and (max-width: 580px) {
-        font-size: 15px;
-        margin: 6px; 
-        padding: 6px 11px;
-        border-width: 2px;
-    }
-
-    &:hover {
-        border-width: 5px;  
-        margin: 8px; 
-
-        @media screen and (max-width: 850px) {
-            border-width: 4px;  
-            margin: 6px;
-        }
-
-        @media screen and (max-width: 500px) {
-            border-width: 3px;  
-            margin: 5px;
-        }
-    }
-}
-
-.selected-book {
-    border-width: 5px;  
-    margin: 8px; 
+  &:hover {
+    border-width: 5px;
+    margin: 8px;
 
     @media screen and (max-width: 850px) {
-        border-width: 4px;  
-        margin: 6px;
+      border-width: 4px;
+      margin: 6px;
     }
 
     @media screen and (max-width: 500px) {
-        border-width: 3px;  
-        margin: 5px;
+      border-width: 3px;
+      margin: 5px;
     }
+  }
 }
 
+.selected-book {
+  border-width: 5px;
+  margin: 8px;
+
+  @media screen and (max-width: 850px) {
+    border-width: 4px;
+    margin: 6px;
+  }
+
+  @media screen and (max-width: 500px) {
+    border-width: 3px;
+    margin: 5px;
+  }
+}

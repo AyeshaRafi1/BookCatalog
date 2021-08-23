@@ -1,8 +1,8 @@
-import { UserActionTypes } from './user.types';
+import { UserActionTypes } from "./user.types";
 
 const INITIAL_STATE = {
   currentUser: null,
-  addBook:false
+  addBook: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -10,13 +10,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload
+        currentUser: action.payload,
       };
     case UserActionTypes.TOGGLE_ADD_BOOK:
       return {
         ...state,
-        addBook:!state.addBook
-      }
+        addBook: !state.addBook,
+      };
     default:
       return state;
   }

@@ -1,32 +1,32 @@
 .header {
-    height: 8vh;
-    min-height: 50px;
-    width: 100%;
+  height: 8vh;
+  min-height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #af3859;
+
+  .options {
+    width: 70%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    background-color: #af3859;
+    align-items: center;
+    justify-content: flex-end;
 
-    .options {
-      width: 70%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-  
-      .option {
-        padding: 5px 15px;
-        cursor: pointer;
-        background-color: white;
-        margin-right: 2%;
-        border-radius: 5px;
+    .option {
+      padding: 5px 15px;
+      cursor: pointer;
+      background-color: white;
+      margin-right: 2%;
+      border-radius: 5px;
 
-        @media screen and (max-width: 850px) {
-         font-size: 20px;
-        }
-        @media screen and (max-width: 500px) {
-           font-size: 16px;
-           padding: 5px 12px;
-        }
+      @media screen and (max-width: 850px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 500px) {
+        font-size: 16px;
+        padding: 5px 12px;
       }
     }
   }
+}

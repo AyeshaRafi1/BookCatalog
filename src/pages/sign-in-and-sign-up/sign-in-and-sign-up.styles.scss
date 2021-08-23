@@ -1,6 +1,6 @@
-.sign-in-sign-up-page-heading{
+.sign-in-sign-up-page-heading {
   text-align: center;
-  padding-top:30px;
+  padding-top: 30px;
   height: 10vh;
   color: #af3859;
   min-height: 55px;
@@ -14,17 +14,17 @@
   @media screen and (max-width: 400px) {
     font-size: 25px;
     height: 11vh;
-    padding-top:15px;
+    padding-top: 15px;
   }
   @media screen and (max-width: 330px) {
     font-size: 25px;
     height: 14vh;
-    padding-top:10px;
+    padding-top: 10px;
   }
 }
 
 .sign-in-and-sign-up {
-  padding:8%;
+  padding: 8%;
   padding-top: 2%;
   width: 100%;
   min-height: 70vh;

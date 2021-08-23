@@ -1,50 +1,48 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
-const selectBook = state => state.book;
+const selectBook = (state) => state.book;
 
 export const selectDeleteBook = createSelector(
   [selectBook],
-  book => book.deleteBook
-)
+  (book) => book.deleteBook
+);
 
 export const selectOtherBooksByAuthor = createSelector(
   [selectBook],
-  book => book.otherBooksByAuthor
+  (book) => book.otherBooksByAuthor
 );
 
 export const selectIsAuthorFetching = createSelector(
   [selectBook],
-  book => book.isFetchingA
+  (book) => book.isFetchingA
 );
 
 export const selectIsOtherBooksLoaded = createSelector(
   [selectBook],
-  book => !!book.otherBooksByAuthor
+  (book) => !!book.otherBooksByAuthor
 );
 
 export const selectCurrentBook = createSelector(
   [selectBook],
-  book => book.currentBook
+  (book) => book.currentBook
 );
 
 export const selectIsErrorWhileFetching = createSelector(
   [selectBook],
-  book => !!book.errorMessage 
-)
+  (book) => !!book.errorMessage
+);
 
 export const selectIsBookFetching = createSelector(
   [selectBook],
-  book => book.isFetching
+  (book) => book.isFetching
 );
 
 export const selectIsBookLoaded = createSelector(
   [selectBook],
-  book => !!book.currentBook
+  (book) => !!book.currentBook
 );
 
 export const selectIsHidden = createSelector(
   [selectBook],
-  book => book.hidden
+  (book) => book.hidden
 );
-
-

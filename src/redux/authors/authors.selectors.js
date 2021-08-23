@@ -1,20 +1,18 @@
-import { createSelector } from 'reselect';
+import { createSelector } from "reselect";
 
-const selectAuthor = state => state.author;
+const selectAuthor = (state) => state.author;
 
 export const selectallAuthor = createSelector(
   [selectAuthor],
-  author => author.allAuthors
+  (author) => author.allAuthors
 );
 
 export const selectIsErrorWhileFetchingA = createSelector(
   [selectAuthor],
-  author => !!author.errorMessage 
-)
+  (author) => !!author.errorMessage
+);
 
 export const selectIsAuthorsFetching = createSelector(
   [selectAuthor],
-  author => author.isFetching
+  (author) => author.isFetching
 );
-
-

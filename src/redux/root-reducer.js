@@ -1,21 +1,21 @@
-import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import userReducer from './user/user.reducer';
-import bookReducer from './books/books.reducer';
-import authorReducer from './authors/authors.reducer';
+import userReducer from "./user/user.reducer";
+import bookReducer from "./books/books.reducer";
+import authorReducer from "./authors/authors.reducer";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['book']
+  whitelist: ["book"],
 };
 
 const rootReducer = combineReducers({
-    user: userReducer,
-    book: bookReducer,
-    author: authorReducer
+  user: userReducer,
+  book: bookReducer,
+  author: authorReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

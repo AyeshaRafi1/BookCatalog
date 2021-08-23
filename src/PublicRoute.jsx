@@ -9,7 +9,7 @@ function PublicRoute({ component: Component, ...otherProps }) {
     <Route
       {...otherProps}
       component={() =>
-        isAuthenticated ? <Redirect to="/homepage" /> : <Component/>
+        isAuthenticated ? <Redirect to='/homepage' /> : <Component />
       }
     />
   );

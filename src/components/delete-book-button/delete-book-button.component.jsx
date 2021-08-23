@@ -1,29 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import {FaTrash} from "react-icons/fa"
-import {IconContext} from "react-icons"
+import { FaTrash } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
-import './delete-book-button.styles.scss';
+import "./delete-book-button.styles.scss";
 
-import { toggleDeleteBook } from '../../redux/books/books.actions';
-import { connect } from 'react-redux';
+import { toggleDeleteBook } from "../../redux/books/books.actions";
+import { connect } from "react-redux";
 
-const DeleteBookButton = ({toggleDeleteBook}) => {
-    return(
-        <IconContext.Provider value={{ style: {fontSize: '45px', color: "rgb(255,255,255)"}}}>
-            <div className="delete-book-icon" onClick={toggleDeleteBook}>
-                <FaTrash/>
-            </div>
-        </IconContext.Provider>
-        
-    )
+const DeleteBookButton = ({ toggleDeleteBook }) => {
+  return (
+    <IconContext.Provider
+      value={{ style: { fontSize: "45px", color: "rgb(255,255,255)" } }}>
+      <div className='delete-book-icon' onClick={toggleDeleteBook}>
+        <FaTrash />
+      </div>
+    </IconContext.Provider>
+  );
+};
 
-}
+const mapDispatchToProps = (dispatch) => ({
+  toggleDeleteBook: () => dispatch(toggleDeleteBook()),
+});
 
-const mapDispatchToProps = dispatch => ({ 
-    toggleDeleteBook: ()=>dispatch(toggleDeleteBook())
-
-})
-
-
-export default connect(null,mapDispatchToProps)(DeleteBookButton);
+export default connect(null, mapDispatchToProps)(DeleteBookButton);
