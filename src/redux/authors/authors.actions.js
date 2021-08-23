@@ -23,7 +23,6 @@ export const fetchAuthorStartAsync = () => {
     AuthorRef.get()
       .then((snapShot) => {
         const allAuthorDetails = getAllAuthors(snapShot);
-        console.log(allAuthorDetails);
 
         dispatch(fetchAuthorsSuccess(allAuthorDetails));
       })

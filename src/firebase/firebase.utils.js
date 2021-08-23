@@ -51,10 +51,7 @@ export const getAllAuthors = (snapShot) => {
     return document.id;
   });
 
-  console.log(allAuthorsName);
-  console.log(allAuthorsID);
   const allAuthors = { names: allAuthorsName, ids: allAuthorsID };
-  console.log(allAuthors);
   return allAuthors;
 };
 
