@@ -3,7 +3,7 @@ import AuthorActionTypes from "./authors.types";
 const INITAL_STATE = {
   allAuthors: null,
   isFetching: false,
-  errorMessage: undefined,
+  errorMessage: null,
 };
 
 const authorReducer = (state = INITAL_STATE, action) => {
@@ -12,7 +12,7 @@ const authorReducer = (state = INITAL_STATE, action) => {
       return {
         ...state,
         isFetching: true,
-        errorMessage: undefined,
+        errorMessage: null,
       };
     case AuthorActionTypes.FETCH_ALL_AUTHORS_SUCCESS:
       return {

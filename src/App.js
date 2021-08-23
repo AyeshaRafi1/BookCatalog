@@ -21,7 +21,6 @@ const App = () => {
     const unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        console.log("did we come here");
 
         userRef.onSnapshot((snapShot) => {
           dispatch(
@@ -33,7 +32,6 @@ const App = () => {
         });
       }
 
-      console.log(userAuth);
       dispatch(setCurrentUser(userAuth));
       dispatch(initalizeBookState());
     });

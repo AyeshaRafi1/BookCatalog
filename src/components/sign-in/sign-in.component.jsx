@@ -19,7 +19,6 @@ const SignIn = () => {
       setPassword("");
       setEmail("");
     } catch (error) {
-      console.log(error);
       alert(error.message);
     }
   };
