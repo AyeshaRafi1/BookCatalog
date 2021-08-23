@@ -1,20 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 
 import AddBookButton from "../../components/add-book-button/add-book-button.component";
 import BookList from "../../components/book-list/book-list.component";
 
-import {
-  selectCurrentUser,
-  selectAddBook,
-} from "../../redux/user/user.selectors";
 import AddBook from "../add-book/add-book.component";
 import Spinner from "../spinner/spinner.component";
 
 import "./book-tiles.styles.scss";
 
-const BookTiles = ({ currentUser, addBook }) => {
+const BookTiles = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const addBook = useSelector((state) => state.user.addBook);
+
   return (
     <div className='left-container'>
       <h1 className='heading'>
@@ -52,9 +50,4 @@ const BookTiles = ({ currentUser, addBook }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  addBook: selectAddBook,
-});
-
-export default connect(mapStateToProps)(BookTiles);
+export default BookTiles;

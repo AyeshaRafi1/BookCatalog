@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -6,21 +7,20 @@ import { IconContext } from "react-icons";
 import "./delete-book-button.styles.scss";
 
 import { toggleDeleteBook } from "../../redux/books/books.actions";
-import { connect } from "react-redux";
 
-const DeleteBookButton = ({ toggleDeleteBook }) => {
+const DeleteBookButton = () => {
+  const dispatch = useDispatch();
+
   return (
     <IconContext.Provider
       value={{ style: { fontSize: "45px", color: "rgb(255,255,255)" } }}>
-      <div className='delete-book-icon' onClick={toggleDeleteBook}>
+      <div
+        className='delete-book-icon'
+        onClick={() => dispatch(toggleDeleteBook())}>
         <FaTrash />
       </div>
     </IconContext.Provider>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleDeleteBook: () => dispatch(toggleDeleteBook()),
-});
-
-export default connect(null, mapDispatchToProps)(DeleteBookButton);
+export default DeleteBookButton;

@@ -36,7 +36,7 @@
   .dropbtn {
     background-color: white;
     color: grey;
-    padding: 0;
+    padding: 4px;
     font-size: 20px;
     border: none;
     width: 100%;
@@ -62,8 +62,8 @@
       display: block;
     }
 
-    a:hover {
-      background-color: #ddd;
+    .select-author:hover {
+      background-color: grey;
     }
   }
 }

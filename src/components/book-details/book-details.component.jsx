@@ -1,29 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 
 import "./book-details.styles.scss";
 
-import {
-  selectCurrentBook,
-  selectDeleteBook,
-  selectIsBookFetching,
-  selectIsHidden,
-  selectIsAuthorFetching,
-  selectOtherBooksByAuthor,
-} from "../../redux/books/books.selectors";
 import DeleteBookButton from "../delete-book-button/delete-book-button.component";
 import ConfirmDelete from "../confirm-delete/confirm-delete.component";
 import Spinner from "../spinner/spinner.component";
 
-const BookDetails = ({
-  currentBook,
-  fetching,
-  hidden,
-  fetchingA,
-  otherBooksByAuthor,
-  deleteBook,
-}) => {
+const BookDetails = () => {
+  const hidden = useSelector((state) => state.book.hidden);
+  const fetching = useSelector((state) => state.book.isFetching);
+  const currentBook = useSelector((state) => state.book.currentBook);
+  const otherBooksByAuthor = useSelector(
+    (state) => state.book.otherBooksByAuthor
+  );
+  const fetchingA = useSelector((state) => state.book.isFetchingA);
+  const deleteBook = useSelector((state) => state.book.deleteBook);
+
   return (
     <div className={`book-details ${hidden ? "hidden" : ""}`}>
       {fetching ? (
@@ -67,13 +60,5 @@ const BookDetails = ({
     </div>
   );
 };
-const mapStateToProps = createStructuredSelector({
-  hidden: selectIsHidden,
-  fetching: selectIsBookFetching,
-  currentBook: selectCurrentBook,
-  otherBooksByAuthor: selectOtherBooksByAuthor,
-  fetchingA: selectIsAuthorFetching,
-  deleteBook: selectDeleteBook,
-});
 
-export default connect(mapStateToProps)(BookDetails);
+export default BookDetails;
