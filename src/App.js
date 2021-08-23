@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -11,64 +10,51 @@ import HomePage from "./pages/homepage/homepage.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import { setCurrentUser } from "./redux/user/user.actions";
-import { selectCurrentUser } from "./redux/user/user.selectors";
 import { initalizeBookState } from "./redux/books/books.actions";
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
+const App = () => {
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    const { setCurrentUser, initalizeBookState } = this.props;
+  const currentUser = useSelector((state) => state.user.currentUser);
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+  useEffect(() => {
+    const unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
+        console.log("did we come here");
 
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
+          dispatch(
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data(),
+            })
+          );
         });
       }
 
-      setCurrentUser(userAuth);
-      initalizeBookState();
+      console.log(userAuth);
+      dispatch(setCurrentUser(userAuth));
+      dispatch(initalizeBookState());
     });
-  }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route
-            exact
-            path='/'
-            render={() =>
-              this.props.currentUser ? (
-                <Redirect to='/homepage' />
-              ) : (
-                <SignInAndSignUpPage />
-              )
-            }
-          />
-          <Route path='/homepage' component={HomePage} />
-        </Switch>
-      </div>
-    );
-  }
-}
+    return () => unSubscribeFromAuth();
+  }, [dispatch]);
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
+  return (
+    <div>
+      <Switch>
+        <Route
+          exact
+          path='/'
+          render={() =>
+            currentUser ? <Redirect to='/homepage' /> : <SignInAndSignUpPage />
+          }
+        />
+        <Route path='/homepage' component={HomePage} />
+      </Switch>
+    </div>
+  );
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-  initalizeBookState: () => dispatch(initalizeBookState()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
