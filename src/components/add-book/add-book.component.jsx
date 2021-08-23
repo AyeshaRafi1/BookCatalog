@@ -1,35 +1,30 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useDispatch, useSelector } from "react-redux";
 
 import { FaChevronCircleUp } from "react-icons/fa";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { updateBooks, setCurrentUser } from "../../redux/user/user.actions";
-import {
-  selectallAuthors,
-  selectIsAuthorsFetching,
-} from "../../redux/authors/authors.selectors";
-
-//import { findInCollection,createNewAuthor,addBookToAuthor, createNewBook} from '../../firebase/firebase.utils';
 
 import { addNewBookAndAuthor } from "../utility";
 import "./add-book.styles.scss";
 
-const AddBook = ({ authors, fetching }) => {
+const AddBook = () => {
   const [bookName, setBookName] = useState("");
   const [genre, setGenre] = useState("");
   const [author, setAuthor] = useState("");
   const [addAuthor, setAddAuthor] = useState("no");
 
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const authors = useSelector((state) => state.author.allAuthors);
+  const fetching = useSelector((state) => state.author.isFetching);
+
   const submit = async (event) => {
     event.preventDefault();
-
-    //getting the book name genre and author entered by the user getting the props
-    const { currentUser, updateBooks, setCurrentUser } = this.props;
 
     try {
       // checking to see if the book already does not exist in the book list that the user has
@@ -48,7 +43,7 @@ const AddBook = ({ authors, fetching }) => {
       };
       copyCurrentUser.bookList = allBooks;
       // setting the book name in the current user of the new book so that the user does not observe the delay
-      setCurrentUser(copyCurrentUser);
+      dispatch(setCurrentUser(copyCurrentUser));
 
       // clearing the values that the user entred from the input field so the user thinks the action has been performed
       setBookName("");
@@ -63,7 +58,7 @@ const AddBook = ({ authors, fetching }) => {
       copyCurrentUser.bookIDs = allBookIds;
 
       // finally we need to add the the book to our list and update the books list in the user
-      updateBooks(copyCurrentUser);
+      dispatch(updateBooks(copyCurrentUser));
       setAddAuthor("no");
     } catch (error) {
       console.error(error);
@@ -150,14 +145,4 @@ const AddBook = ({ authors, fetching }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  authors: selectallAuthors,
-  fetching: selectIsAuthorsFetching,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  updateBooks: (user) => dispatch(updateBooks(user)),
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(AddBook);
+export default AddBook;
