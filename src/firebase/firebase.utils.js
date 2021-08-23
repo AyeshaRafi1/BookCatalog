@@ -42,16 +42,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 };
 
 //Fetching all Authors that we have in our database
-export const getAllAuthors = async (collectionRef) => {
-  const allFiles = await collectionRef.get();
-
-  const allAuthors = await allFiles.docs.map((document) => {
+export const getAllAuthors = (snapShot) => {
+  const allAuthorsName = snapShot.docs.map((document) => {
     const { Name } = document.data();
-    return [document.id, Name];
+    return Name;
+  });
+  const allAuthorsID = snapShot.docs.map((document) => {
+    return document.id;
   });
 
+  console.log(allAuthorsName);
+  console.log(allAuthorsID);
+  const allAuthors = { names: allAuthorsName, ids: allAuthorsID };
   console.log(allAuthors);
-
   return allAuthors;
 };
 

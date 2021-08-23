@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 const selectAuthor = (state) => state.author;
 
-export const selectallAuthor = createSelector(
+export const selectallAuthors = createSelector(
   [selectAuthor],
   (author) => author.allAuthors
 );

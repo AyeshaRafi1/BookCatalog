@@ -10,7 +10,7 @@ import "./add-book-button.styles.scss";
 
 import { fetchAuthorStartAsync } from "../../redux/authors/authors.actions";
 import { createStructuredSelector } from "reselect";
-import { selectallAuthor } from "../../redux/authors/authors.selectors";
+import { selectallAuthors } from "../../redux/authors/authors.selectors";
 
 const AddBookButton = ({ toggleAddBook, fetchAuthorStartAsync, allAuthor }) => {
   const onAddBookButtonClick = () => {
@@ -36,6 +36,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  allAuthor: selectallAuthor,
+  allAuthor: selectallAuthors,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(AddBookButton);
