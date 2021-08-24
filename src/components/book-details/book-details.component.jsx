@@ -14,7 +14,7 @@ const BookDetails = () => {
   const otherBooksByAuthor = useSelector(
     (state) => state.book.otherBooksByAuthor
   );
-  const fetchingA = useSelector((state) => state.book.isFetchingA);
+  const fetchingAuthor = useSelector((state) => state.book.isFetchingAuthor);
   const deleteBook = useSelector((state) => state.book.deleteBook);
 
   return (
@@ -29,7 +29,7 @@ const BookDetails = () => {
               <h2 className='book-info'>{currentBook.Genre}</h2>
               <h2 className='book-info'>{currentBook.Author}</h2>
               <h2 className='book-info'>All Books by this Author</h2>
-              {fetchingA ? (
+              {fetchingAuthor ? (
                 <Spinner />
               ) : (
                 <div>

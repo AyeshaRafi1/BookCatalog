@@ -4,7 +4,7 @@ const INITAL_STATE = {
   hidden: true,
   currentBook: null,
   isFetching: false,
-  isFetchingA: false,
+  isFetchingAuthor: false,
   errorMessage: null,
   otherBooksByAuthor: null,
   deleteBook: false,
@@ -17,7 +17,7 @@ const bookReducer = (state = INITAL_STATE, action) => {
         hidden: true,
         currentBook: null,
         isFetching: false,
-        isFetchingA: false,
+        isFetchingAuthor: false,
         errorMessage: null,
         otherBooksByAuthor: null,
         deleteBook: false,
@@ -30,20 +30,20 @@ const bookReducer = (state = INITAL_STATE, action) => {
     case BookActionTypes.FETCH_AUTHOR_START:
       return {
         ...state,
-        isFetchingA: true,
+        isFetchingAuthor: true,
         errorMessage: null,
       };
     case BookActionTypes.FETCH_AUTHOR_SUCCESS:
       return {
         ...state,
-        isFetchingA: false,
+        isFetchingAuthor: false,
         otherBooksByAuthor: action.payload,
       };
     case BookActionTypes.FETCH_AUTHOR_FAILURE:
       return {
         ...state,
         currentAuthor: null,
-        isFetchingA: false,
+        isFetchingAuthor: false,
         errorMessage: action.payload,
       };
     case BookActionTypes.TOGGLE_BOOK_HIDDEN:
@@ -77,7 +77,7 @@ const bookReducer = (state = INITAL_STATE, action) => {
         hidden: true,
         currentBook: null,
         isFetching: false,
-        isFetchingA: false,
+        isFetchingAuthor: false,
         errorMessage: null,
         otherBooksByAuthor: null,
       };
